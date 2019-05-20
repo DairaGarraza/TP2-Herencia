@@ -5,12 +5,14 @@ import org.junit.Test;
 
 public class CuentaSueldoTest {
 
+	// Este es el 1er test que hice, pero me di cuenta que me compliqué demasiado y por eso hice otro test más simple abajo
 	@Test
 	public void testParaVerSiFuncionaLaCuenta() {
 		
 		Double valor = 4000.0;
 		Double extraccion1 = 500.0;
-		Double extraccion2 = 4000.0;
+		//Double extraccion2 = 4000.0;
+		Double extraccion2 = 000.0;
 		CuentaSueldo cuenta = new CuentaSueldo(0.0);
 		
 		// Para depositar
@@ -52,4 +54,42 @@ public class CuentaSueldoTest {
 		 * te tira verde.
 		 */
 }
+	
+	
+	// Este test es más simple y me gusta más, pero no significa que esté bien :P
+	@Test
+	public void testSimpleParaVerSiFuncionaLaCuenta() {
+		
+		CuentaSueldo cuenta = new CuentaSueldo(0.0);
+		
+		cuenta.depositar(4000.0);
+		Double saldo = cuenta.getSaldo();
+		Double valorEsperado = 4000.0;
+		
+		Assert.assertEquals("El valor obtenido no coincide con el esperado.", saldo, valorEsperado);
+		// El saldo vale 4000.0
+		
+		
+		cuenta.extraer(500.0);
+		saldo = cuenta.getSaldo();
+		Double segundoValorEsperado = 3500.0;
+		
+		Assert.assertEquals("El valor obtenido no coincide con el esperado.", saldo, segundoValorEsperado);
+		// El saldo vale 3500.0
+		
+		
+		cuenta.extraer(4000.0);
+		saldo = cuenta.getSaldo();
+		Double tercerValorEsperado = -500.0;
+		
+		Assert.assertTrue(cuenta.getSaldo() >= 3500.0);
+		
+		Assert.assertEquals("El valor obtenido no coincide con el esperado.", saldo, tercerValorEsperado);
+		
+		/* Si bien no lanza un RuntimeException se puede ver que al ser el monto a extraer superior al saldo, la extracción
+		 * no se lleva a cabo. Con el AssertTrue se verifica que sigue quedando en $3500. Y se verifica con el AsserEquals también
+		 * ya que de llevarse a cabo la extracción, el monto de la cuenta debería quedar en -500.0, pero lanza rojo porque la
+		 * extracción no se realizó.
+		 */
+	}
 }
