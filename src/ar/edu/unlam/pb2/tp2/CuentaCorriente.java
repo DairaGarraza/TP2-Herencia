@@ -1,6 +1,11 @@
 package ar.edu.unlam.pb2.tp2;
 
-public class CuentaCorriente {
+public class CuentaCorriente extends CuentaSueldo {
+
+	public CuentaCorriente(Double saldo) {
+		super(saldo);
+		// TODO Auto-generated constructor stub
+	}
 /*- Permite establecer una cantidad de dinero a girar en descubierto. 
  * 
  *- Cada vez que se desee extraer dinero, no sólo se considera el que se posee, 
